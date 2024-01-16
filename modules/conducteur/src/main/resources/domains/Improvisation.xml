@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.1.xsd">
+
+    <module name="conducteur" package="com.axelor.conducteur.db"/>
+
+    <sequence name="conducteur.improvisation.seq" initial="1" increment="1" padding="4" prefix="IMPRO"/>
+
+    <entity name="Improvisation">
+        <string name="name" title="ID" sequence="conducteur.improvisation.seq" readonly="true"/>
+        <date name="dateImprovisation" title="Date d'enregistrement" required="true"/>
+        <one-to-one name="programme" ref="Programme" required="true"/>
+        <many-to-one name="conducteur" ref="ConducteurAntenne" required="true"/>
+        <time name="heureDebut" required="true"/>
+        <time name="heureFin" required="true"/>
+        <many-to-one name="motif" ref="MotifImprovisation" required="true"/>
+
+    </entity>
+
+</domain-models>

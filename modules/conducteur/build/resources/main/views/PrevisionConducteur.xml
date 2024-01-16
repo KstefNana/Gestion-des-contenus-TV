@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
+
+
+    <grid title="Liste d'attente" name="prevision-grid" model="com.axelor.conducteur.db.PrevisionConducteur">
+
+        <field name="programme" title="Titre"/>
+        <field name="duree" title="Durée"/>
+
+
+    </grid>
+    <form title="Prevision" name="prevision-form" model="com.axelor.conducteur.db.PrevisionConducteur">
+        <panel title="Overview">
+
+            <field name="programme" title="Titre" onChange="action-prevision-conducteur-add-programme"/>
+            <field name="duree" title="Durée"/>
+            <field name="producteur" title="Producteur"/>
+            <field name="genre" title="Genre"/>
+            <field name="statut" title="Source"/>
+            <field name="langue" title="Langue"/>
+
+        </panel>
+
+    </form>
+
+
+</object-views>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
+
+
+    <grid title="Eléments listés" name="details-grid" model="com.axelor.conducteur.db.DetailsConducteur">
+        <field name="heureDebutPrevue" title="Heure début"/>
+        <field name="heureFinPrevue" title="Heure fin"/>
+        <field name="programme" title="Titre"/>
+        <field name="statut" title="Source"/>
+
+
+    </grid>
+    <form title="Détails" name="details-form" model="com.axelor.conducteur.db.DetailsConducteur">
+        <panel title="Overview">
+
+            <field name="heureDebutPrevue" title="Heure de début"/>
+            <field name="heureFinPrevue" title="Heure de fin"/>
+            <field name="programme" title="Titre" onChange="action-details-conducteur-add-programme"/>
+            <field name="duree" title="Durée"/>
+            <field name="producteur" title="Producteur"/>
+            <field name="genre" title="Genre"/>
+            <field name="statut" title="Source"/>
+            <field name="langue" title="Langue"/>
+
+        </panel>
+
+    </form>
+
+</object-views>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.1.xsd">
+
+    <module name="conducteur" package="com.axelor.conducteur.db"/>
+
+    <entity name="DetailsConducteur">
+        <many-to-one name="programme" ref="Programme" required="true"/>
+        <many-to-one name="conducteur" ref="ConducteurAntenne" required="true"/>
+        <time name="heureDebutPrevue" required="true"/>
+        <time name="heureFinPrevue" >
+            <![CDATA[
+
+                    return this.getHeureDebutPrevue().plusHours(programme.getDuree().getHour()).plusMinutes(programme.getDuree().getMinute());
+
+            ]]>
+
+        </time>
+        <time name="duree">
+            <![CDATA[
+              return programme.getDuree();
+            ]]>
+        </time>
+        <string name="producteur">
+            <![CDATA[
+            return programme.getCentre().getName();
+            ]]>
+        </string>
+        <string name="genre">
+            <![CDATA[
+              return programme.getGenre().getName();
+            ]]>
+        </string>
+        <string name="statut">
+            <![CDATA[
+              return programme.getStatut();
+            ]]>
+        </string>
+        <string name="langue">
+            <![CDATA[
+              return programme.getLangue().getName();
+            ]]>
+        </string>
+
+    </entity>
+
+</domain-models>

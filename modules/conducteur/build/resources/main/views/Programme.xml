@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
+
+    <selection name="programme.statut.selection">
+        <option value="enDirect" title="En direct" color="red">En direct</option>
+        <option value="serveur" title="Serveur" color="yellow">Serveur</option>
+    </selection>
+
+    <grid title="Programmes" name="programme-grid" model="com.axelor.conducteur.db.Programme">
+        <field name="name" title="Nom"/>
+        <field name="genre" title="Genre" />
+        <field name="type" title="Type"/>
+        <field name="programmeParent" title="Traduction du programme"/>
+        <field name="duree" title="Durée" x-seconds="true"/>
+        <field name="langue" title="Langue"/>
+        <field name="dateEnregistrement" title="Date d'enregistrement"/>
+        <field name="statut" title="Source" widget="SingleSelect"/>
+    </grid>
+
+    <form title="Programmes" name="programmes-form" model="com.axelor.conducteur.db.Programme">
+        <panel name="OverviewPanel" title="Overview">
+            <panel colSpan="3">
+                <field name="image" showTitle="false" colSpan="12" widget="image"/>
+            </panel>
+            <panel colSpan="9">
+                <field name="name" title="Nom du programme" colSpan="12"/>
+
+                <field name="programmeParent" title="Traduction du programme"/>
+                <field name="dateEnregistrement" title="Date d'enregistrement"/>
+                <field name="duree"/>
+                <field name="genre" title="Genre"/>
+                <field name="type" title="Type"/>
+                <field name="langue" title="Langue"/>
+                <field name="centre" title="Centre de production"/>
+                <field name="statut" title="Source" widget="SingleSelect"/>
+            </panel>
+
+        </panel>
+        <panel name="notesPanel" title="Notes">
+            <field name="description" showTitle="false" colSpan="12" widget="html" />
+        </panel>
+        <panel name="sidePanel" sidebar="true">
+            <field name="createdOn"/>
+            <field name="createdBy"/>
+            <field name="updatedOn"/>
+            <field name="updatedBy"/>
+        </panel>
+    </form>
+</object-views>

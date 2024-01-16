@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
+
+
+    <grid title="Détails" name="improvisation-grid" model="com.axelor.conducteur.db.Improvisation">
+        <field name="name" title="Code"/>
+        <field name="dateImprovisation" title="Date d'exécution"/>
+        <field name="heureDebut" title="Heure de début"/>
+        <field name="heureFin" title="Heure de fin"/>
+        <field name="conducteur" title="Conducteur concerné"/>
+        <field name="programme" title="Contenu"/>
+        <field name="motif" title="Motif de l'improvisation"/>
+
+    </grid>
+    <form title="Détails" name="improvisation-form" model="com.axelor.conducteur.db.Improvisation">
+        <panel title="Détails">
+            <field name="dateImprovisation" title="Date d'exécution"/>
+            <field name="heureDebut" title="Heure de début"/>
+            <field name="heureFin" title="Heure de fin"/>
+            <field name="programme" title="Contenu"/>
+            <field name="conducteur" title="Conducteur concerné"/>
+            <field name="motif" title="Motif de l'improvisation"/>
+
+        </panel>
+
+    </form>
+
+</object-views>

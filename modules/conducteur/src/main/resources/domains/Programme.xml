@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.1.xsd">
+
+    <module name="conducteur" package="com.axelor.conducteur.db"/>
+
+    <entity name="Programme">
+        <string name="name" unique="true" min="2" required="true"/>
+        <many-to-one name="programmeParent" ref="Programme"/>
+        <date name="dateEnregistrement" required="true"/>
+        <time name="duree" required="true"/>
+        <many-to-one name="genre" ref="Genre" required="true"/>
+        <many-to-one name="type" ref="TypeProgramme" required="true"/>
+        <many-to-one name="langue" ref="Langue" required="true"/>
+        <many-to-one name="centre" ref="CentreProduction" required="true"/>
+        <one-to-one name="image" ref="com.axelor.meta.db.MetaFile" />
+        <string name="description" title="A propos" large="true" />
+        <string name="statut" selection="programme.statut.selection" required="true"/>
+    </entity>
+
+</domain-models>

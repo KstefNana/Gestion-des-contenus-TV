@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
+
+    <selection name="conducteur.etat.selection">
+        <option value="BROUILLON" color="blue">Brouillon</option>
+        <option value="ETUDE" color="yellow">En étude</option>
+        <option value="VALIDE" color="green">Validé</option>
+        <option value="ANNULE" color="red">Annulé</option>
+    </selection>
+
+    <grid title="Nom du conducteur" name="antenne-grid" model="com.axelor.conducteur.db.ConducteurAntenne">
+        <field name="name" title="ID conducteur"/>
+        <field name="structure" title="Nom de la structure"/>
+        <field name="dateEnregistrement" title="Date d'enregistrement"/>
+        <field name="etat" widget="single-select" selection="conducteur.etat.selection"/>
+        <field name="dateExecution" title="Date d'exécution"/>
+    </grid>
+
+    <form title="Détails du conducteur" name="antenne-form" model="com.axelor.conducteur.db.ConducteurAntenne" onNew="default-conducteurAntenne-record" width="large" >
+        <toolbar>
+            <button name="btnPrint" title="Imprimer" showTitle="false" showIf="id" onClick="print.sale.order" icon="fa-print"/>
+        </toolbar>
+        <panel title="Details du conducteur" >
+            <field name="name"/>
+            <field name="etat" widget="nav-select" readonly="true"/>
+            <field name="structure" title="Nom de la Structure"/>
+            <field name="confirmed" title="confirmer" widget="boolean-switch" onChange="com.axelor.conducteur.ConducteurAntenneController:onConfirm"/>
+            <field name="dateEnregistrement" title="Date d'enregistrement" requiredIf="confirmed" validIf="dateEnregistrement == null || $moment(dateEnregistrement)"/>
+            <field name="dateExecution" title="Date d'exécution"/>
+
+        </panel>
+
+        <panel-tabs>
+            <panel-related field="details" editable="true" readonlyIf="confirmed" orderBy="heureDebutPrevue" canSave="true" >
+                <field name="heureDebutPrevue" title="Heure de début"/>
+                <field name="heureFinPrevue" title="Heure de fin"/>
+                <field name="duree" title="Durée"/>
+                <field name="programme" title="Titre" onChange="action-details-conducteur-add-programme"/>
+                <field name="producteur" title="Producteur"/>
+                <field name="genre" title="Genre"/>
+                <field name="statut" title="Source"/>
+                <field name="langue" title="Langue"/>
+            </panel-related>
+
+            <panel-related field="prevision" editable="true" readonlyIf="confirmed">
+                <field name="duree" title="Durée"/>
+                <field name="programme" title="Titre" onChange="action-prevision-conducteur-add-programme"/>
+                <field name="producteur" title="Producteur"/>
+                <field name="genre" title="Genre"/>
+                <field name="statut" title="Source"/>
+                <field name="langue" title="Langue"/>
+            </panel-related>
+
+            <panel name="notesPanel" title="Observations">
+                <field name="description" showTitle="false" colSpan="12" widget="html" />
+            </panel>
+
+        </panel-tabs>
+
+    </form>
+
+    <cards title="Antenne" name="antenne-card" model="com.axelor.conducteur.db.ConducteurAntenne" width="400px">
+        <field name="name"/>
+        <field name="etat"/>
+        <field name="dateEnregistrement"/>
+        <field name="dateExecution"/>
+        <template>
+
+                <![CDATA[
+                <div>
+                  <div class="span6">
+                    <strong>{{ name }}</strong>
+                  </div>
+                  <div class="span6">
+                    <span class="tag-select pull-right" style="border: 0;">
+                      <span class="label label-primary blue" ng-if="record.status == 'BROUILLON'"><span x-translate>Brouillon</span></span>
+                      <span class="label label-primary yellow" ng-if="record.status == 'ETUDE'"><span x-translate>En étude</span></span>
+                      <span class="label label-primary red" ng-if="record.status == 'ANNULE'"><span x-translate>Annulé</span></span>
+                      <span class="label label-primary green" ng-if="record.status == 'VALIDE'"><span x-translate>Validé</span></span>
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <div class="span6">
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;{{$fmt('dateEnregistrement')}}</p>
+                  </div>
+                  <div class="span6">
+                    <p><i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;&nbsp;{{$fmt('dateExecution')}}</p>
+                  </div>
+            ]]>
+
+        </template>
+    </cards>
+
+    <action-record name="default-conducteurAntenne-record" model="com.axelor.conducteur.db.ConducteurAntenne">
+        <field name="etat" expr="BROUILLON" />
+    </action-record>
+
+    <action-export name="export.conducteur.conducteurAntenne" output="${name}/${date}${time}" download="true">
+        <export name="${name}.xml" template="data-export/export-conducteur-conducteurAntenne.st"/>
+    </action-export>
+
+    <action-report name="print.sale.order"
+                   design="conducteur_d_antenne.rptdesign"
+                   output="co-${date}${time}"
+                   format="pdf">
+        <param name="NewParameter" expr="eval: id"/>
+    </action-report>
+
+</object-views>

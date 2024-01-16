@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.1.xsd">
+
+    <module name="conducteur" package="com.axelor.conducteur.db"/>
+
+    <sequence name="conducteur.antenne.seq" initial="1" increment="1" padding="5" prefix="CO"/>
+
+    <enum name="EtatValidation">
+        <item name="BROUILLON" value="brouillon" title="Brouillon" />
+        <item name="ETUDE" value="etude" title="En étude"/>
+        <item name="VALIDE" value="valide" title="Validé" />
+        <item name="ANNULE" value="annule" title="Annulé"/>
+    </enum>
+
+    <entity name="ConducteurAntenne" sequential="true">
+        <many-to-one name="structure" ref="Structure" required="true"/>
+        <string name="name" title="ID" sequence="conducteur.antenne.seq" readonly="true"/>
+        <one-to-many name="details" ref="DetailsConducteur" mappedBy="conducteur" orderBy="duree" required="true"/>
+        <one-to-many name="prevision" ref="PrevisionConducteur" mappedBy="conducteur"/>
+        <date name="dateEnregistrement" required="true"/>
+        <integer name="sequence" />
+        <boolean name="confirmed" />
+        <date name="dateExecution"/>
+        <enum name="etat" ref="EtatValidation"/>
+        <string name="observation" large="true" />
+
+        <track>
+            <field name="name" />
+            <field name="dateEnregistrement" on="CREATE" />
+            <field name="confirmed" on="UPDATE" />
+            <field name="dateEnregistrement" on="UPDATE" if="confirmed" />
+            <message if="true" on="CREATE">Order created</message>
+            <message if="confirmed" on="UPDATE">Conducteur confirmé</message>
+            <message if="status == EtatValidation.BROUILLON" tag="important">Brouillon</message>
+            <message if="confirmed" tag="success">Confirmé</message>
+        </track>
+
+    </entity>
+
+</domain-models>

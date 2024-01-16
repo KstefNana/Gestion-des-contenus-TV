@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  https://axelor.com/xml/ns/domain-models/domain-models_6.1.xsd">
+
+    <module name="conducteur" package="com.axelor.conducteur.db"/>
+
+    <entity name="TypeProgramme" cacheable="true">
+        <string name="name" title="type" required="true" unique="true" />
+        <string name="description" max="255"/>
+    </entity>
+
+</domain-models>

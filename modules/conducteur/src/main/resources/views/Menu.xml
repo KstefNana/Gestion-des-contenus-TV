@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
+
+    <menuitem name="menu-programmes"
+              title="Liste de programmes" icon="fa-video-camera" icon-background="orange"/>
+
+    <menuitem name="menu-programme-all"
+              parent="menu-programmes"
+              title="Tous les programmes"
+              action="conducteur.all" tag-count="true" tag-style="info"/>
+
+    <action-view name="conducteur.all"
+                 title="Programmes"
+                 model="com.axelor.conducteur.db.Programme">
+        <view type="grid" name="programme-grid"/>
+        <view type="form" name="programmes-form"/>
+    </action-view>
+
+    <menuitem name="menu-programme-config"
+              parent="menu-programmes"
+              title="Configuration" icon="fa-gear" icon-background="lightblue"/>
+
+    <menuitem name="menu-genres-all"
+              parent="menu-programme-config"
+              title="Tous les genres"
+              action="genre.all" tag-count="true"/>
+
+    <action-view name="genre.all"
+                 title="Genres"
+                 model="com.axelor.conducteur.db.Genre">
+        <view type="grid" name="genre-grid"/>
+        <view type="form" name="genre-form"/>
+    </action-view>
+
+    <menuitem name="menu-typeProgramme-all"
+              parent="menu-programme-config"
+              title="Tous les types"
+              action="type.all" tag-count="true"/>
+
+    <action-view name="type.all"
+                 title="Types"
+                 model="com.axelor.conducteur.db.TypeProgramme">
+        <view type="grid" name="type-grid"/>
+        <view type="form" name="type-form"/>
+    </action-view>
+
+    <menuitem name="menu-langue-all"
+              parent="menu-programme-config"
+              title="Toutes les langues"
+              action="langue.all" tag-count="true"/>
+
+    <action-view name="langue.all"
+                 title="Langues"
+                 model="com.axelor.conducteur.db.Langue">
+        <view type="grid" name="langue-grid"/>
+        <view type="form" name="langue-form"/>
+    </action-view>
+
+    <menuitem name="menu-pays-all"
+              parent="menu-programme-config"
+              title="Tous les pays"
+              action="pays.all" tag-count="true"/>
+
+    <action-view name="pays.all"
+                 title="Pays"
+                 model="com.axelor.conducteur.db.PaysOrigine">
+        <view type="grid" name="pays-grid"/>
+        <view type="form" name="pays-form"/>
+    </action-view>
+
+    <menuitem name="menu-centre-all"
+              parent="menu-programme-config"
+              title="Tous les centres de production"
+              action="centre.all" tag-count="true"/>
+
+    <action-view name="centre.all"
+                 title="Centres"
+                 model="com.axelor.conducteur.db.CentreProduction">
+        <view type="grid" name="centre-grid"/>
+        <view type="form" name="centre-form"/>
+    </action-view>
+
+    <menuitem name="menu-conducteurs"
+              title="Conducteur d'antenne" icon="fa-file-video-o" icon-background="pink"/>
+
+
+    <menuitem name="menu-conducteurs-all"
+              parent="menu-conducteurs"
+              title="Tous les conducteurs"
+              action="antenne.all" tag-count="true" tag-style="info" />
+
+    <action-view name="antenne.all"
+                 title="Conducteurs"
+                 model="com.axelor.conducteur.db.ConducteurAntenne">
+        <view type="grid" name="antenne-grid"/>
+        <view type="form" name="antenne-form"/>
+    </action-view>
+
+
+    <menuitem name="menu-improvisations"
+              title="Improvisations" icon="fa-exclamation-circle" icon-background="bluegrey"/>
+
+    <menuitem name="menu-improvisations-all"
+              parent="menu-improvisations"
+              title="Résumé des improvisations"
+              action="improvisation.all" tag-count="true" tag-style="info"/>
+
+    <action-view name="improvisation.all"
+                 title="Improvisations"
+                 model="com.axelor.conducteur.db.Improvisation">
+        <view type="grid" name="improvisation-grid"/>
+        <view type="form" name="improvisation-form"/>
+    </action-view>
+
+    <menuitem name="menu-improvisations-config"
+              parent="menu-improvisations"
+              title="Configuration" icon="fa-gear" icon-background="lightblue"/>
+
+    <menuitem name="menu-motifs-all"
+              parent="menu-improvisations-config"
+              title="Tous les motifs"
+              action="motifs.all" tag-count="true"/>
+
+    <action-view name="motifs.all"
+                 title="Motifs"
+                 model="com.axelor.conducteur.db.MotifImprovisation">
+        <view type="grid" name="motif-grid"/>
+        <view type="form" name="motif-form"/>
+    </action-view>
+
+    <menuitem name="menu-structures"
+              title="Structures" icon="fa-building-o" icon-background="teal"/>
+
+    <menuitem name="menu-structures-all"
+              parent="menu-structures"
+              title="Liste des structures"
+              action="structure.all" tag-count="true" tag-style="info"/>
+
+    <action-view name="structure.all"
+                 title="Structures"
+                 model="com.axelor.conducteur.db.Structure">
+        <view type="grid" name="structure-grid"/>
+        <view type="form" name="structure-form"/>
+    </action-view>
+
+
+
+</object-views>

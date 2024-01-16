@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  https://axelor.com/xml/ns/object-views/object-views_6.1.xsd">
+
+    <grid title="centres de production" name="centre-grid" model="com.axelor.conducteur.db.CentreProduction">
+        <field name="name" title="Centres de production"/>
+        <field name="description"/>
+        <field name="pays"/>
+        <field name="dateCreation" title="Date de création"/>
+    </grid>
+    <form title="centres de production" name="centre-form" model="com.axelor.conducteur.db.CentreProduction">
+        <panel title="Overview">
+            <field name="name" title="Centre de production"/>
+            <field name="pays" title="Pays d'origine"/>
+            <field name="dateCreation" title="Date de création" />
+            <field name="description" colSpan="12"/>
+        </panel>
+    </form>
+
+</object-views>
